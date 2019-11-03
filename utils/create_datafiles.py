@@ -5,7 +5,7 @@ from skimage.io import imread
 import glob
 import os
 import matplotlib.pyplot as plt
-
+import scipy.misc
 
 def getMarkersCells(labelPath, scale, size):
     lab = imread(labelPath)[:, :] / 255
@@ -63,17 +63,20 @@ def getTrainingExampleCells(img_raw, framesize_w, framesize_h, labelPath, base_x
 
 
 imgs = []
-scale = 2
-framesize = int(600/scale)
+scale = 1
+framesize = int(256/scale)
 framesize_h = framesize_w = framesize
 patch_size = 32
 ef = ((patch_size/1)**2.0)
-data_dir = '/PATH_TO/MBM/MBM_data'
-datasetfilename = "MBM-dataset.pkl"
+data_dir = '/home/techgarage/count-ception_mbm/utils/Small'
+datasetfilename = "/home/techgarage/count-ception_mbm/utils/Vescicle-dataset-v2.pkl"
 
-for filename in glob.iglob(data_dir + '/*dots*.png'):
-    xml = filename.replace("_dots", "")
+count = 0
+for filename in glob.iglob(data_dir + '/*dots*.PNG'):
+    xml = filename.replace("-dots", "")
     imgs.append([xml, filename])
+    count += 1
+print(count)
 
 
 dataset = []
@@ -91,8 +94,7 @@ else:
         print(imgPath)
 
         im = imread(imgPath)
-        img_raw_raw = im  # .mean(axis=(2)) #grayscale
-
+        img_raw_raw = im  # .mean(axis=(2)) #grayscale-
         img_raw = scipy.misc.imresize(img_raw_raw, (int(img_raw_raw.shape[0] / scale), int(img_raw_raw.shape[1] / scale)))
         print(img_raw_raw.shape, " ->>>>", img_raw.shape)
 

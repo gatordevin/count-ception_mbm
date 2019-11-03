@@ -21,7 +21,8 @@ class MBM(data.Dataset):
         self.np_dataset_x = self.np_dataset_x.transpose((0, 3, 1, 2))
 
     def split_data(self):
-        n = 15
+        n = int(len(self.np_dataset_x)/2)
+        print(n)
         if self.mode == 'train':
             self.x = self.np_dataset_x[0:n]
             self.y = self.np_dataset_y[0:n]

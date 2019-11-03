@@ -10,9 +10,9 @@ import numpy as np
 
 
 parser = argparse.ArgumentParser(description='PyTorch Sealion count training')
-parser.add_argument('--pkl-file', default="utils/MBM-dataset.pkl", type=str, help='path to pickle file.')
+parser.add_argument('--pkl-file', default="utils/Vescicle-dataset-v2.pkl", type=str, help='path to pickle file.')
 parser.add_argument('--batch-size', default=2, type=int, help='the batch size for training.')
-parser.add_argument('--epochs', default=1000, type=int, help='total number of training epochs.')
+parser.add_argument('--epochs', default=250, type=int, help='total number of training epochs.')
 parser.add_argument('--lr', default=0.001, type=float, help='learning rate.')
 
 
